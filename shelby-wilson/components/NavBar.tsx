@@ -1,4 +1,5 @@
 'use client';
+import Image from "next/image";
 
 import Link from 'next/link';
 import { usePathname } from 'next/navigation';
@@ -17,9 +18,21 @@ export default function NavBar() {
   const [menuOpen, setMenuOpen] = useState(false);
 
   return (
-    <nav className="sticky top-0 z-50 bg-gray-900 text-white shadow-md">
-      <div className="max-w-6xl mx-auto px-4 py-4 flex justify-between items-center">
-        <h1 className="text-xl font-bold">Shelby Wilson</h1>
+    <nav className="sticky top-0 z-50 bg-teal-500 text-white shadow-md">
+      <div className="max-w-6xl mx-auto px-1 py-1 flex justify-between items-center">
+        <div className="flex items-center gap-2">
+          <div className="w-8 h-8 rounded-full overflow-hidden border-1 border-white-10 shadow-lg">
+            <Image
+              src="/Avatar.png"
+              alt="Shelby Avatar"
+              width={100}
+              height={100}
+              priority
+              className="object-cover"
+            />
+          </div>
+          <h1 className="text-xl font-bold ml-2">Shelby Wilson</h1>
+        </div>
 
         {/* Desktop nav */}
         <ul className="hidden md:flex space-x-6">
@@ -28,11 +41,11 @@ export default function NavBar() {
               <Link
                 href={href}
                 className={clsx(
-                  'hover:text-blue-400 transition-colors',
-                  pathname === href && 'font-semibold text-blue-400'
+                  'hover:text-teal-700 transition-colors',
+                  pathname === href && 'font-semibold text-teal-700'
                 )}
               >
-                {label}
+                <strong>{label}</strong>
               </Link>
             </li>
           ))}
