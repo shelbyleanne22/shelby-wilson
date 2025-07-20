@@ -1,13 +1,23 @@
 'use client'
-import { useState } from 'react';
-
-const prompts = ['adjective', 'noun', 'verb', 'color', 'animal'];
-const template =
-    'Once upon a time, there was a very {0} {1} who loved to {2} in a {3} suit with their pet {4}.';
+import FormField from '@/components/form/FormField';
+import { adLibPrompts } from '@/lib/adLibPrompts';
+import { FormEvent, useEffect, useState } from 'react';
 
 export default function AdLibPage() {
-    const [inputs, setInputs] = useState<string[]>(Array(prompts.length).fill(''));
+    const [randomPrompt, setRandomPrompt] = useState<{
+        title: string;
+        prompts: string[];
+        template: string;
+    } | null>(null);
+
+    const [inputs, setInputs] = useState<string[]>([]);
     const [result, setResult] = useState<string | null>(null);
+
+    useEffect(() => {
+        const random = adLibPrompts[Math.floor(Math.random() * adLibPrompts.length)];
+        setRandomPrompt(random);
+        setInputs(Array(random.prompts.length).fill(''));
+    }, []);
 
     const handleChange = (index: number, value: string) => {
         const updated = [...inputs];
@@ -15,51 +25,56 @@ export default function AdLibPage() {
         setInputs(updated);
     };
 
-    const handleSubmit = (e: React.FormEvent) => {
-        e.preventDefault();
+    const handleSubmit = (event: FormEvent) => {
+        event.preventDefault();
+        if (!randomPrompt) return;
 
-        const filled = template.replace(/{(\d+)}/g, (match, index) =>
-            inputs[parseInt(index)] || ''
-        );
+        const filled = randomPrompt.template.replace(/{(\d+)}/g, (match, index) => {
+            return inputs[index] || `[${randomPrompt.prompts[index]}]`;
+        });
 
         setResult(filled);
     };
 
-    return (
+    if (!randomPrompt) return <div className="p-8">Loading...</div>;
 
+    return (
         <div className="p-6 w-[60%] mx-auto">
             <h1 className="text-3xl font-bold mb-4">🎭 AdLib Generator</h1>
-
-            <form onSubmit={handleSubmit} className="space-y-4">
-                {prompts.map((type, idx) => (
-                    <div key={idx}>
-                        <label className="block text-sm font-medium mb-1">
-                            Enter a {type}:
-                        </label>
-                        <input
-                            type="text"
-                            required
-                            value={inputs[idx]}
-                            onChange={(e) => handleChange(idx, e.target.value)}
-                            className="w-full rounded-md p-2 bg-gray-800 text-white border border-gray-600"
-                        />
-                    </div>
-                ))}
-
-                <button
-                    type="submit"
-                    className="bg-blue-600 hover:bg-blue-700 px-4 py-2 rounded text-white"
-                >
-                    Generate Story
-                </button>
-            </form>
-
-            {result && (
-                <div className="mt-6 p-4 bg-gray-800 border border-gray-700 rounded">
-                    <h2 className="text-xl font-semibold mb-2">Your Story:</h2>
-                    <p>{result}</p>
+            <h2 className="text-2xl">{randomPrompt.title}</h2>
+            <div className="flex flex-col md:flex-row gap-4 p-4 min-h-screen">
+                <div className="w-full md:w-1/2 space-y-4">
+                    <form onSubmit={handleSubmit} className="space-y-4">
+                        <div className="flex flex-wrap gap-4">
+                            {randomPrompt.prompts.map((type, idx) => (
+                                <FormField
+                                    key={idx}
+                                    label={type}
+                                    name={`input-${idx}`}
+                                    value={inputs[idx]}
+                                    onChange={(value) => handleChange(idx, value)}
+                                />
+                            ))}
+                        </div>
+                        <div>
+                            <button
+                                type="submit"
+                                className="block bg-teal-600 hover:bg-teal-700 px-4 py-2 rounded text-white font-bold mx-auto"
+                            >
+                                Generate Story
+                            </button>
+                        </div>
+                    </form>
                 </div>
-            )}
+                <div className="w-full md:w-1/2">
+                    {result && (
+                        <div className="mt-6 p-4 bg-gray-300 border border-gray-700 rounded">
+                            <h2 className="text-xl font-semibold mb-2">Your Story:</h2>
+                            <p>{result}</p>
+                        </div>
+                    )}
+                </div>
+            </div>
         </div>
     );
 }
