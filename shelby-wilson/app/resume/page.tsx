@@ -5,7 +5,7 @@ import { School, Sun } from "lucide-react";
 import { schemaColors } from "@/lib/colors";
 
 export default function ResumePage() {
-  let skills = ["C#", "React", "Next", "Typescript", "Javascript", ".NET Core", "Restful APIs", "Git", "Azure", "AWS", "Sitecore CMS", "Mulesoft",
+  const skills = ["C#", "React", "Next", "Typescript", "Javascript", ".NET Core", "Restful APIs", "Git", "Azure", "AWS", "Sitecore CMS", "Mulesoft",
     "SonarQube", "Twilio", "IIS", "Java", "SQL", "HTML", "CSS", "MES"];
 
   const getRandomColor = () => {
@@ -85,7 +85,7 @@ export default function ResumePage() {
           <h2 className="text-2xl p-2 mt-2">Languages & technologies</h2>
           <div className="flex flex-wrap gap-2">
             {skills.map((skill) => {
-              let { border, bg, text } = getRandomColor();
+              const { border, bg, text } = getRandomColor();
               return (
                 <Skill
                   key={skill}
