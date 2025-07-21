@@ -37,7 +37,7 @@ export default function AdLibPage() {
     };
 
     return (
-        <div className="p-6 w-[60%] mx-auto">
+        <div className="p-6 w-lg-[60%] mx-auto">
             <h1 className="text-3xl font-bold mb-4">🎭 AdLib Generator</h1>
             <h2 className="text-2xl">{randomPrompt?.title}</h2>
             <div className="flex flex-col md:flex-row gap-4 p-4">

@@ -13,9 +13,9 @@ export default function ResumePage() {
   };
 
   return (
-    <div className="p-6 w-[60%] mx-auto">
-      <div className="flex gap-4">
-        <div className="flex-1">
+    <div className="p-6 w-lg-[60%] mx-auto">
+      <div className="flex flex-col md:flex-row gap-4">
+        <div className="w-full md:flex-1">
           <h2 className="text-2xl pb-2">Experience</h2>
           <Experience
             company="New York Life Insurance"
@@ -68,7 +68,7 @@ export default function ResumePage() {
             Icon={Sun}
           />
         </div>
-        <div className="w-1/3">          
+        <div className="w-full md:w-1/3">          
           <h2 className="text-2xl pb-2">Education</h2>
           <div className="flex flex-wrap gap-2">
             <Experience

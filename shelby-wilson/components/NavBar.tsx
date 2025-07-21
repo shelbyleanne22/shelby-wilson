@@ -8,7 +8,7 @@ import { Menu, X } from 'lucide-react';
 import clsx from 'clsx';
 
 const navItems = [
-  { label: 'About Me', href: '/about' },
+  { label: 'About Me', href: '/' },
   { label: 'Resume', href: '/resume' },
   { label: 'AdLib Fun', href: '/adlib' },
 ];
