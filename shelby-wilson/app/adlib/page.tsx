@@ -36,6 +36,16 @@ export default function AdLibPage() {
         setResult(filled);
     };
 
+    const clearFields = () => {
+        setInputs(Array(inputs.length).fill(''));
+    };
+
+    if (!randomPrompt) return (
+        <div className="flex items-center justify-center min-h-screen">
+            <img src="/kitty.gif" alt="Loading..." className="w-60 h-60" />
+        </div>
+    );
+
     return (
         <div className="p-6 w-full lg:w-[60%] mx-auto">
             <h1 className="text-3xl font-bold mb-4">🎭 AdLib Generator</h1>
@@ -54,10 +64,17 @@ export default function AdLibPage() {
                                 />
                             ))}
                         </div>
-                        <div>
+                        <div className="flex gap-4 justify-center">
+                            <button
+                                type="button"
+                                className="bg-red-500 hover:bg-red-700 px-4 py-2 rounded text-white font-bold"
+                                onClick={clearFields}
+                            >
+                                Clear
+                            </button>
                             <button
                                 type="submit"
-                                className="block bg-teal-600 hover:bg-teal-700 px-4 py-2 rounded text-white font-bold mx-auto"
+                                className="bg-green-600 hover:bg-green-700 px-4 py-2 rounded text-white font-bold"
                             >
                                 Generate Story
                             </button>

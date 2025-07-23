@@ -12,19 +12,32 @@ type FormFieldProps = {
 function FormField({ name, label, required = true, value, onChange }: FormFieldProps) {
     return (
         <div className="w-full">
-            <label
+            {/* <label
                 htmlFor={name}
-                className="block text-md mb-1">
+                className="text-md block mb-2 text-sm font-medium text-gray-700 dark:text-gray-200">
                 {label}
-            </label>
+            </label> */}
             <input
                 id={name}
                 name={name}
+                placeholder={label}
                 type="text"
                 required={required}
                 value={value}
                 onChange={(e) => onChange(e.target.value)}
-                className="w-full rounded-md p-2 bg-gray-200 text-dark border border-gray-300 shadow"
+                className="w-full px-4 py-2 rounded-xl border 
+                border-gray-300 
+                dark:border-gray-600 
+                bg-white 
+                dark:bg-gray-800 
+                text-gray-900 
+                dark:text-white 
+                placeholder-gray-400 
+                dark:placeholder-gray-500 
+                focus:outline-none 
+                focus:ring-2 
+                focus:ring-teal-500 
+                focus:border-transparent"
             />
         </div>
     );
