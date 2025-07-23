@@ -6,7 +6,7 @@ export default function Home() {
       <main className="flex flex-col gap-4 row-start-2 items-center sm:items-start">
         <div className="p-6 w-lg-[60%] mx-auto">
           <div className="flex flex-col md:flex-row gap-4">
-            <div className="flex justify-center md:justify-start md:w-1/2">
+            <div className="flex justify-center md:w-1/2">
               <Image
                 src="/profilePic.jpg"
                 alt="Shelby Profile"
@@ -17,8 +17,8 @@ export default function Home() {
               />
             </div>
             <div className="p-2 md:w-1/2">
-              <h2 className="text-3xl font-bold mb-4">Shelby Wilson</h2>
-              <ul className="list-disc text-xl">
+              <h2 className="text-3xl font-bold mb-4 text-center md:text-left">Shelby Wilson</h2>
+              <ul className="list-none md:list-disc text-xl text-center md:text-left">
                 <li className="p-2">My outie finds solace beneath open skies, where the wild whispers and the horizon stretches endlessly.</li>
                 <li className="p-2">Certified to plunge into the silent depths, my outie navigates worlds beneath the waves with calm precision.</li>
                 <li className="p-2">Lost in dystopian worlds penned in ink, my outie unravels fractured realities and imagined futures.</li>

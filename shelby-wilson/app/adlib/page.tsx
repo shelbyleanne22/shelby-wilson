@@ -37,7 +37,7 @@ export default function AdLibPage() {
     };
 
     return (
-        <div className="p-6 w-lg-[60%] mx-auto">
+        <div className="p-6 w-full lg:w-[60%] mx-auto">
             <h1 className="text-3xl font-bold mb-4">🎭 AdLib Generator</h1>
             <h2 className="text-2xl">{randomPrompt?.title}</h2>
             <div className="flex flex-col md:flex-row gap-4 p-4">
@@ -64,7 +64,7 @@ export default function AdLibPage() {
                         </div>
                     </form>
                 </div>
-                <div className="w-full md:w-1/2 pt-4">
+                <div className="w-full md:w-1/2 pt-4 text-center md:text-left">
                     {result && (
                         <div className="rounded-lg border-1 border-slate-400 bg-teal-50 p-4 mt-2 text-dark">
                             <p className='text-lg px-2'><i>{result}</i></p>

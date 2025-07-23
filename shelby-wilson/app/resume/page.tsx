@@ -13,7 +13,7 @@ export default function ResumePage() {
   };
 
   return (
-    <div className="p-6 w-lg-[60%] mx-auto">
+    <div className="p-6 w-full lg:w-[60%] mx-auto">
       <div className="flex flex-col md:flex-row gap-4">
         <div className="w-full md:flex-1">
           <h2 className="text-2xl pb-2">Experience</h2>
