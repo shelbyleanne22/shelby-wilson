@@ -83,7 +83,7 @@ export default function AdLibPage() {
                 </div>
                 <div className="w-full md:w-1/2 pt-4 text-center md:text-left">
                     {result && (
-                        <div className="rounded-lg border-1 border-slate-400 bg-teal-50 p-4 mt-2 text-dark">
+                        <div className="rounded-lg border-1 border-slate-400 bg-teal-50 p-4 mt-2 text-dark dark:border-slate-100 dark:bg-teal-950">
                             <p className='text-lg px-2'><i>{result}</i></p>
                         </div>
                     )}
