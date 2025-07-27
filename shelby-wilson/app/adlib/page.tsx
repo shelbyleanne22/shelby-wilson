@@ -11,6 +11,7 @@ export default function AdLibPage() {
     } | null>(null);
 
     const [inputs, setInputs] = useState<string[]>([]);
+    const [errors, setErrors] = useState<string[]>([]);
     const [result, setResult] = useState<string | null>(null);
 
     useEffect(() => {
@@ -19,21 +20,37 @@ export default function AdLibPage() {
         setInputs(Array(random.prompts.length).fill(''));
     }, []);
 
+    const validate = (value: string) => {
+        if (!/^[a-z]*$/.test(value)) return "Only lowercase a-z letters allowed.";
+        if (value.length > 25) return "Max 25 characters.";
+        return "";
+    }
+
     const handleChange = (index: number, value: string) => {
         const updated = [...inputs];
         updated[index] = value;
         setInputs(updated);
+
+        const error = validate(value);
+        const updatedErrors = [...errors];
+        updatedErrors[index] = error;
+        setErrors(updatedErrors);
     };
 
     const handleSubmit = (event: FormEvent) => {
         event.preventDefault();
         if (!randomPrompt) return;
+        const newErrors = inputs.map(validate);
+        setErrors(newErrors);
 
-        const filled = randomPrompt.template.replace(/{(\d+)}/g, (match, index) => {
-            return inputs[index] || `[${randomPrompt.prompts[index]}]`;
-        });
+        const hasErrors = newErrors.some((err) => err !== '');
+        if (!hasErrors) {
+            const filled = randomPrompt.template.replace(/{(\d+)}/g, (match, index) => {
+                return inputs[index] || `[${randomPrompt.prompts[index]}]`;
+            });
 
-        setResult(filled);
+            setResult(filled);
+        }
     };
 
     const clearFields = () => {
@@ -48,11 +65,12 @@ export default function AdLibPage() {
 
     return (
         <div className="p-6 w-full lg:w-[60%] mx-auto">
-            <h1 className="text-3xl font-bold mb-4">🎭 AdLib Generator</h1>
+            <h1 className="text-3xl font-bold mb-4">🎭 Ad-Lib Generator</h1>
             <h2 className="text-2xl">{randomPrompt?.title}</h2>
+            <h3>Complete the form and hit generate story to complete the ad-lib!</h3>
             <div className="flex flex-col md:flex-row gap-4 p-4">
                 <div className="w-full md:w-1/2 space-y-4">
-                    <form onSubmit={handleSubmit} className="space-y-4">
+                    <form noValidate onSubmit={handleSubmit} className="space-y-4">
                         <div className="flex flex-wrap gap-4">
                             {randomPrompt?.prompts.map((type, idx) => (
                                 <FormField
@@ -61,6 +79,7 @@ export default function AdLibPage() {
                                     name={`input-${idx}`}
                                     value={inputs[idx]}
                                     onChange={(value) => handleChange(idx, value)}
+                                    error={errors[idx]}
                                 />
                             ))}
                         </div>

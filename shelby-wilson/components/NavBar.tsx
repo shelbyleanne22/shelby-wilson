@@ -63,14 +63,14 @@ export default function NavBar() {
 
       {/* Mobile dropdown menu */}
       {menuOpen && (
-        <ul className="md:hidden flex flex-col items-center bg-gray-800 border-t border-gray-700">
+        <ul className="md:hidden flex flex-col items-center bg-teal-800 border-t border-teal-700">
           {navItems.map(({ label, href }) => (
-            <li key={href} className="w-full text-center py-3 border-b border-gray-700">
+            <li key={href} className="w-full text-center py-3 border-b border-teal-700">
               <Link
                 href={href}
                 className={clsx(
-                  'block w-full hover:text-blue-400 transition-colors',
-                  pathname === href && 'font-semibold text-blue-400'
+                  'block w-full hover:text-teal-400 transition-colors',
+                  pathname === href && 'font-semibold text-teal-400'
                 )}
                 onClick={() => setMenuOpen(false)}
               >
