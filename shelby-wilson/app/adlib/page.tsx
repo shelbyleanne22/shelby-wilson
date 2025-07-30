@@ -1,7 +1,8 @@
-'use client'
-import FormField from '@/components/form/FormField';
+'use client';
+import { useForm, Controller } from 'react-hook-form';
 import { adLibPrompts } from '@/lib/adLibPrompts';
-import { FormEvent, useEffect, useState } from 'react';
+import FormField from '@/components/form/FormField';
+import { useEffect, useState } from 'react';
 
 export default function AdLibPage() {
     const [randomPrompt, setRandomPrompt] = useState<{
@@ -10,78 +11,95 @@ export default function AdLibPage() {
         template: string;
     } | null>(null);
 
-    const [inputs, setInputs] = useState<string[]>([]);
-    const [errors, setErrors] = useState<string[]>([]);
+    const {
+        control,
+        handleSubmit,
+        reset,
+        formState: { errors },
+    } = useForm({ mode: 'onBlur' });
+
     const [result, setResult] = useState<string | null>(null);
 
     useEffect(() => {
         const random = adLibPrompts[Math.floor(Math.random() * adLibPrompts.length)];
         setRandomPrompt(random);
-        setInputs(Array(random.prompts.length).fill(''));
-    }, []);
 
-    const validate = (value: string) => {
-        if (!/^[a-z]*$/.test(value)) return "Only lowercase a-z letters allowed.";
-        if (value.length > 25) return "Max 25 characters.";
-        return "";
-    }
+        const defaultValues = random.prompts.reduce((acc, _, i) => {
+            acc[`input-${i}`] = '';
+            return acc;
+        }, {} as Record<string, string>);
+        reset(defaultValues);
+    }, [reset]);
 
-    const handleChange = (index: number, value: string) => {
-        const updated = [...inputs];
-        updated[index] = value;
-        setInputs(updated);
-
-        const error = validate(value);
-        const updatedErrors = [...errors];
-        updatedErrors[index] = error;
-        setErrors(updatedErrors);
-    };
-
-    const handleSubmit = (event: FormEvent) => {
-        event.preventDefault();
+    const onSubmit = (data: Record<string, string>) => {
         if (!randomPrompt) return;
-        const newErrors = inputs.map(validate);
-        setErrors(newErrors);
 
-        const hasErrors = newErrors.some((err) => err !== '');
-        if (!hasErrors) {
-            const filled = randomPrompt.template.replace(/{(\d+)}/g, (match, index) => {
-                return inputs[index] || `[${randomPrompt.prompts[index]}]`;
-            });
+        const filled = randomPrompt.template.replace(/{(\d+)}/g, (match, index) => {
+            const value = data[`input-${index}`];
+            return value || `[${randomPrompt.prompts[index]}]`;
+        });
 
-            setResult(filled);
-        }
+        setResult(filled);
     };
 
     const clearFields = () => {
-        setInputs(Array(inputs.length).fill(''));
+        if (!randomPrompt) return;
+        const cleared = randomPrompt.prompts.reduce((acc, _, i) => {
+            acc[`input-${i}`] = '';
+            return acc;
+        }, {} as Record<string, string>);
+        reset(cleared);
+        setResult(null);
     };
 
-    if (!randomPrompt) return (
-        <div className="flex items-center justify-center min-h-screen">
-            <img src="/kitty.gif" alt="Loading..." className="w-60 h-60" />
-        </div>
-    );
+    if (!randomPrompt) {
+        return (
+            <div className="flex items-center justify-center min-h-screen">
+                <img src="/kitty.gif" alt="Loading..." className="w-60 h-60" />
+            </div>
+        );
+    }
 
     return (
         <div className="p-6 w-full lg:w-[60%] mx-auto">
             <h1 className="text-3xl font-bold mb-4">🎭 Ad-Lib Generator</h1>
-            <h2 className="text-2xl">{randomPrompt?.title}</h2>
+            <h2 className="text-2xl">{randomPrompt.title}</h2>
             <h3>Complete the form and hit generate story to complete the ad-lib!</h3>
             <div className="flex flex-col md:flex-row gap-4 p-4">
                 <div className="w-full md:w-1/2 space-y-4">
-                    <form noValidate onSubmit={handleSubmit} className="space-y-4">
+                    <form noValidate onSubmit={handleSubmit(onSubmit)} className="space-y-4">
                         <div className="flex flex-wrap gap-4">
-                            {randomPrompt?.prompts.map((type, idx) => (
-                                <FormField
-                                    key={idx}
-                                    label={type}
-                                    name={`input-${idx}`}
-                                    value={inputs[idx]}
-                                    onChange={(value) => handleChange(idx, value)}
-                                    error={errors[idx]}
-                                />
-                            ))}
+                            {randomPrompt.prompts.map((type, idx) => {
+                                const fieldName = `input-${idx}`;
+                                return (
+                                    <Controller
+                                        key={fieldName}
+                                        name={fieldName}
+                                        control={control}
+                                        rules={{
+                                            required: 'This field is required.',
+                                            maxLength: {
+                                                value: 25,
+                                                message: 'Max 25 characters.',
+                                            },
+                                            pattern: {
+                                                value: /^[A-Za-z ]*$/,
+                                                message: 'Only letters and spaces allowed.',
+                                            },
+                                        }}
+                                        render={({ field }) => (
+                                            <FormField
+                                                label={type}
+                                                name={field.name}
+                                                value={field.value}
+                                                error={errors[field.name]?.message as string}
+                                                onChange={field.onChange}
+                                                onBlur={field.onBlur}
+                                            />
+                                        )}
+                                    />
+                                );
+                            })}
                         </div>
                         <div className="flex gap-4 justify-center">
                             <button
@@ -103,7 +121,7 @@ export default function AdLibPage() {
                 <div className="w-full md:w-1/2 pt-4 text-center md:text-left">
                     {result && (
                         <div className="rounded-lg border-1 border-slate-400 bg-teal-50 p-4 mt-2 text-dark dark:border-slate-100 dark:bg-teal-950">
-                            <p className='text-lg px-2'><i>{result}</i></p>
+                            <p className="text-lg px-2"><i>{result}</i></p>
                         </div>
                     )}
                 </div>

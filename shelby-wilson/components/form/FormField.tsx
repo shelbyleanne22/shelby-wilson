@@ -8,9 +8,10 @@ type FormFieldProps = {
     value: string;
     onChange: (value: string) => void;
     error?: string;
+    onBlur?: () => void;
 };
 
-function FormField({ name, label, required = true, value, onChange, error }: FormFieldProps) {
+function FormField({ name, label, required = true, value, onChange, error, onBlur }: FormFieldProps) {
     return (
         <div className="w-full">
             {/* <label
@@ -39,8 +40,9 @@ function FormField({ name, label, required = true, value, onChange, error }: For
                 focus:ring-teal-500 
                 focus:border-transparent
                 ${error ? "border-red-500" : "border-gray-300 focus:ring-2 focus:ring-teal-500" }`}
+                onBlur={onBlur}
             />
-            {error && <span className="text-red-500 text-sm mt-1">{error}</span>}
+            {error && <span className="text-red-500 dark:text-red-200 text-sm mt-1">{error}</span>}
         </div>
     );
 }

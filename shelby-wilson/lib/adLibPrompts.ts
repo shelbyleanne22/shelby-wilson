@@ -24,7 +24,7 @@ export const adLibPrompts = [
             'Tool',
             'Animal',
             'Silly sound',
-            'Noun'
+            'Noun (thing)'
         ],
         template: `Last weekend, I hosted a BBQ so epic, even the {0} next door showed ` + 
         `up for a free {1}. Things were going great until Uncle Joe tried flipping burgers ` + 
