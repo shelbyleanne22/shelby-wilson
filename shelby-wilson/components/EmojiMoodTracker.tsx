@@ -1,6 +1,6 @@
 import { MoodProvider } from '@/contexts/MoodContext';
-import MoodSelector from './MoodSelector';
-import CurrentMood from './CurrentMood';
+import MoodSelector from './moodTracker/MoodSelector';
+import CurrentMood from './moodTracker/CurrentMood';
 
 export default function EmojiMoodTracker() {
     return (

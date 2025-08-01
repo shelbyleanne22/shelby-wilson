@@ -11,7 +11,8 @@ const navItems = [
   { label: 'About Me', href: '/' },
   { label: 'Resume', href: '/resume' },
   { label: 'Ad-Lib Fun', href: '/adlib' },
-  { label: 'Mood Tracker', href: '/moodTracker'}
+  { label: 'Mood Tracker', href: '/moodTracker' },
+  { label: 'Hook Visualizer', href: '/hookMeUp' }
 ];
 
 export default function NavBar() {
