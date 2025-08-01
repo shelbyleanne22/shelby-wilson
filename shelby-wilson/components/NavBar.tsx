@@ -10,7 +10,8 @@ import clsx from 'clsx';
 const navItems = [
   { label: 'About Me', href: '/' },
   { label: 'Resume', href: '/resume' },
-  { label: 'AdLib Fun', href: '/adlib' },
+  { label: 'Ad-Lib Fun', href: '/adlib' },
+  { label: 'Mood Tracker', href: '/moodTracker'}
 ];
 
 export default function NavBar() {
