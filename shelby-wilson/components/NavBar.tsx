@@ -10,9 +10,13 @@ import clsx from 'clsx';
 const navItems = [
   { label: 'About Me', href: '/' },
   { label: 'Resume', href: '/resume' },
-  { label: 'Ad-Lib Fun', href: '/adlib' },
-  { label: 'Mood Tracker', href: '/moodTracker' },
-  { label: 'Hook Visualizer', href: '/hookMeUp' }
+  {
+    label: 'React Fun', href: '/reactFun', children: [
+      { label: 'Ad-Lib Fun', href: '/reactFun/adlib' },
+      { label: 'Mood Tracker', href: '/reactFun/moodTracker' },
+      { label: 'Hook Visualizer', href: '/reactFun/hookMeUp' }
+    ]
+  }
 ];
 
 export default function NavBar() {
@@ -38,7 +42,7 @@ export default function NavBar() {
 
         {/* Desktop nav */}
         <ul className="hidden md:flex space-x-6">
-          {navItems.map(({ label, href }) => (
+          {navItems.map(({ label, href, children }) => (
             <li key={href}>
               <Link
                 href={href}
@@ -49,6 +53,24 @@ export default function NavBar() {
               >
                 <strong>{label}</strong>
               </Link>
+
+              {children && (
+                <ul className="absolute top-full left-0 mt-1 bg-white text-black shadow-lg rounded hidden group-hover:block min-w-[200px] z-50">
+                  {children.map((child) => (
+                    <li key={child.href}>
+                      <Link
+                        href={child.href}
+                        className={clsx(
+                          'block px-4 py-2 hover:bg-teal-100',
+                          pathname === child.href && 'font-semibold bg-teal-100'
+                        )}
+                      >
+                        {child.label}
+                      </Link>
+                    </li>
+                  ))}
+                </ul>
+              )}
             </li>
           ))}
         </ul>
@@ -66,7 +88,7 @@ export default function NavBar() {
       {/* Mobile dropdown menu */}
       {menuOpen && (
         <ul className="md:hidden flex flex-col items-center bg-teal-800 border-t border-teal-700">
-          {navItems.map(({ label, href }) => (
+          {navItems.map(({ label, href, children }) => (
             <li key={href} className="w-full text-center py-3 border-b border-teal-700">
               <Link
                 href={href}
@@ -78,6 +100,25 @@ export default function NavBar() {
               >
                 {label}
               </Link>
+
+              {children && (
+                <ul className='bg-teal-900 text-sm'>
+                  {children.map((child) => (
+                    <li key={child.href} className="border-t border-teal-700">
+                      <Link
+                        href={child.href}
+                        className={clsx(
+                          'block py-2 pl-6 w-full text-left hover:text-teal-300',
+                          pathname === child.href && 'font-semibold text-teal-300'
+                        )}
+                        onClick={() => setMenuOpen(false)}
+                      >
+                        {child.label}
+                      </Link>
+                    </li>
+                  ))}
+                </ul>
+              )}
             </li>
           ))}
         </ul>
