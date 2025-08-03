@@ -18,7 +18,7 @@ export default function HookSelector({ selected, onSelect }: Props) {
               : 'bg-gray-200 text-black hover:bg-gray-300'
           }`}
         >
-          {hook}
+           {hook}
         </button>
       ))}
     </div>

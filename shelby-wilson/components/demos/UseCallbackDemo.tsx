@@ -9,20 +9,24 @@ export default function useCallbackDemo() {
     }, [count]);
 
     return (
-        <div>
-            <p className="mb-2">Count: {count}</p>
-            <button
-                onClick={() => setCount(count + 1)}
-                className="bg-yellow-500 text-white px-4 py-2 rounded mr-2"
-            >
-                Increment
-            </button>
-            <button
-                onClick={memoizedCallback}
-                className="bg-purple-600 text-white px-4 py-2 rounded"
-            >
-                Click Me
-            </button>
+        <div className="space-y-4">
+            <p className="text-xl mb-2">Count: {count}</p>
+            <div className="flex gap-2">
+                <button
+                    onClick={() => setCount(count + 1)}
+                    className="bg-green-600 hover:bg-green-700 px-4 py-2 rounded text-white font-bold"
+                >
+                    Increment
+                </button>
+                <button
+                    onClick={memoizedCallback}
+                    className="bg-red-500 hover:bg-red-700 px-4 py-2 rounded text-white font-bold"
+                >
+                    Click Me
+                </button>
+            </div>
         </div>
     )
 }
+
+

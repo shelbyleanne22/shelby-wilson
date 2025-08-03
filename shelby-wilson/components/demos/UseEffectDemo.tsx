@@ -11,5 +11,5 @@ export default function useEffectDemo() {
         return () => clearInterval(timer);
     }, []);
 
-    return <p>Current Time: {time}</p>
+    return <p className="text-xl mb-2">Current Time: {time}</p>
 }

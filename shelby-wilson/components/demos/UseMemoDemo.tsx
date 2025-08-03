@@ -15,10 +15,10 @@ export default function useMemoDemo() {
                 type="number"
                 value={number}
                 onChange={(e) => setNumber(Number(e.target.value))}
-                className="border px-3 py-2 rounded"
+                className="border px-4 py-2 rounded mr-4 mb-2 w-full"
                 min={0}
             />
-            <p className="mt-2">Factorial: {factorial}</p>
+            <p className="w-full px-4 py-2 rounded font-bold">Factorial: {factorial}</p>
         </div>
     );
 }
