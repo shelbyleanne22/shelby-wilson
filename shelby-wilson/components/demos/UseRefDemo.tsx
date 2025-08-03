@@ -14,10 +14,11 @@ export default function useRefDemo() {
             />
             <button
                 onClick={() => inputRef.current?.focus()}
-                className="w-full bg-green-600 hover:bg-green-700 px-4 py-2 rounded text-white font-bold"
+                className="w-full bg-green-600 hover:bg-green-700 px-4 py-2 rounded text-white font-bold mb-2"
             >
                 Focus Input
             </button>
+            <p>UseRef holds onto values without triggering a rerenders.</p>
         </div>
     )
 }

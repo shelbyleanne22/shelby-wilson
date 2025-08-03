@@ -15,6 +15,8 @@ export default function useStateDemo() {
                     Reset
                 </button>
             </div>
+            <p>UseState stores the state of a React component 
+                and triggers a render if this data changes.</p>
         </div>
     )
 }

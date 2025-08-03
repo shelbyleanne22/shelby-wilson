@@ -11,5 +11,10 @@ export default function useEffectDemo() {
         return () => clearInterval(timer);
     }, []);
 
-    return <p className="text-xl mb-2">Current Time: {time}</p>
+    return (
+        <div>
+            <p className="text-xl mb-2">Current Time: {time}</p>
+            <p>UseEffect watches for changes in dependencies and runs functions when changes occurs.</p>
+        </div>
+    );
 }

@@ -25,6 +25,9 @@ export default function useCallbackDemo() {
                     Click Me
                 </button>
             </div>
+            <p>UseCallback caches function definitions
+                between re-renders to ensure the same function
+                instance is used. This helps prevent re-renders.</p>
         </div>
     )
 }

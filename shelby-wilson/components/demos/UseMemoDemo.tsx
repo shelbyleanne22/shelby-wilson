@@ -19,6 +19,9 @@ export default function useMemoDemo() {
                 min={0}
             />
             <p className="w-full px-4 py-2 rounded font-bold">Factorial: {factorial}</p>
+            <p>UseMemo remembers the result of a slow calculation so if nothing changes
+                it uses the same result instead of doing the work again.
+            </p>
         </div>
     );
 }

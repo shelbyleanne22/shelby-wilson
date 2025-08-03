@@ -65,6 +65,7 @@ export default function AdLibPage() {
             <h1 className="text-3xl font-bold mb-4">🎭 Ad-Lib Generator</h1>
             <h2 className="text-2xl">{randomPrompt.title}</h2>
             <h3>Complete the form and hit generate story to complete the ad-lib!</h3>
+            <p className="text-xl text-center p-4 m-2">The form demonstrates the use of controlled components using the React Hook Form library.</p>
             <div className="flex flex-col md:flex-row gap-4 p-4">
                 <div className="w-full md:w-1/2 space-y-4">
                     <form noValidate onSubmit={handleSubmit(onSubmit)} className="space-y-4">
