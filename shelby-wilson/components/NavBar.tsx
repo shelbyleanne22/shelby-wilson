@@ -11,10 +11,10 @@ const navItems = [
   { label: 'About Me', href: '/' },
   { label: 'Resume', href: '/resume' },
   {
-    label: 'React Fun', href: '/reactFun', children: [
+    label: 'React Fun', href: '#', children: [
       { label: 'Ad-Lib Fun', href: '/reactFun/adlib' },
       { label: 'Mood Tracker', href: '/reactFun/moodTracker' },
-      { label: 'Hook Visualizer', href: '/reactFun/hookMeUp' }
+      { label: 'Hook Visualizer', href: '/reactFun/hookVisualizer' }
     ]
   }
 ];
@@ -22,6 +22,7 @@ const navItems = [
 export default function NavBar() {
   const pathname = usePathname();
   const [menuOpen, setMenuOpen] = useState(false);
+  const [openDropdown, setOpenDropdown] = useState<string | null>(null);
 
   return (
     <nav className="sticky top-0 z-50 bg-teal-500 text-white shadow-md">
@@ -42,37 +43,61 @@ export default function NavBar() {
 
         {/* Desktop nav */}
         <ul className="hidden md:flex space-x-6">
-          {navItems.map(({ label, href, children }) => (
-            <li key={href}>
-              <Link
-                href={href}
-                className={clsx(
-                  'hover:text-teal-700 transition-colors',
-                  pathname === href && 'font-semibold text-teal-700'
-                )}
-              >
-                <strong>{label}</strong>
-              </Link>
+          <ul className="hidden md:flex space-x-6 relative">
+            {navItems.map(({ label, href, children }) => {
+              const hasChildren = !!children;
+              const isOpen = openDropdown === label;
 
-              {children && (
-                <ul className="absolute top-full left-0 mt-1 bg-white text-black shadow-lg rounded hidden group-hover:block min-w-[200px] z-50">
-                  {children.map((child) => (
-                    <li key={child.href}>
-                      <Link
-                        href={child.href}
+              return (
+                <li key={href} className="relative">
+                  {hasChildren ? (
+                    <>
+                      <button
+                        type="button"
+                        onClick={() =>
+                          setOpenDropdown((prev) => (prev === label ? null : label))
+                        }
                         className={clsx(
-                          'block px-4 py-2 hover:bg-teal-100',
-                          pathname === child.href && 'font-semibold bg-teal-100'
+                          'hover:text-teal-700 transition-colors',
+                          pathname === href && 'font-semibold text-teal-700'
                         )}
                       >
-                        {child.label}
-                      </Link>
-                    </li>
-                  ))}
-                </ul>
-              )}
-            </li>
-          ))}
+                        <strong>{label}</strong>
+                      </button>
+
+                      {isOpen && (
+                        <ul className="absolute mt-1 bg-white text-black shadow-lg rounded min-w-max z-50">
+                          {children.map((child) => (
+                            <li key={child.href} className="relative">
+                              <Link
+                                href={child.href}
+                                className={clsx(
+                                  'block px-4 py-2 hover:bg-teal-100',
+                                  pathname === child.href && 'font-semibold bg-teal-100'
+                                )}
+                              >
+                                {child.label}
+                              </Link>
+                            </li>
+                          ))}
+                        </ul>
+                      )}
+                    </>
+                  ) : (
+                    <Link
+                      href={href}
+                      className={clsx(
+                        'hover:text-teal-700 transition-colors',
+                        pathname === href && 'font-semibold text-teal-700'
+                      )}
+                    >
+                      <strong>{label}</strong>
+                    </Link>
+                  )}
+                </li>
+              );
+            })}
+          </ul>
         </ul>
 
         {/* Mobile menu toggle */}
