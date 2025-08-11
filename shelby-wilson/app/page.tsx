@@ -11,9 +11,9 @@ export default function Home() {
             Developer, Adventurer and Lifelong Learner
           </p>
           <ul className="text-xl text-cyan-500 italic space-y-1">
-            <li>Full Stack Developer</li>
+            <li>Full Stack Developer</li>            
+            <li>Problem Solver</li>
             <li>Creative Coder</li>
-            <li>Quest Explorer</li>
           </ul>
         </div>
         <div className="flex-shrink-0">

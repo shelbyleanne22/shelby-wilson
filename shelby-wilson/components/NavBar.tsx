@@ -112,7 +112,7 @@ export default function NavBar() {
 
       {/* Mobile dropdown menu */}
       {menuOpen && (
-        <ul className="md:hidden flex flex-col items-center bg-teal-800 border-t border-cyan-700">
+        <ul className="md:hidden flex flex-col items-center bg-cyan-800 border-t border-cyan-700">
           {navItems.map(({ label, href, children }) => (
             <li key={href} className="w-full text-center py-3 border-b border-cyan-700">
               <Link
