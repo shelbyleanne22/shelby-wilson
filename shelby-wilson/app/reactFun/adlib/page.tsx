@@ -3,6 +3,7 @@ import { useForm, Controller } from 'react-hook-form';
 import { adLibPrompts } from '@/lib/adLibPrompts';
 import FormField from '@/components/form/FormField';
 import { useEffect, useState } from 'react';
+import Image from 'next/image';
 
 export default function AdLibPage() {
     const [randomPrompt, setRandomPrompt] = useState<{
@@ -55,7 +56,7 @@ export default function AdLibPage() {
     if (!randomPrompt) {
         return (
             <div className="flex items-center justify-center min-h-screen">
-                <img src="/kitty.gif" alt="Loading..." className="w-60 h-60" />
+                <Image src="/kitty.gif" alt="Loading..." width={60} height={60}/>
             </div>
         );
     }

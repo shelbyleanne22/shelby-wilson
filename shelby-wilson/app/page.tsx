@@ -6,7 +6,7 @@ export default function Home() {
       {/* Hero Section */}
       <section className="flex flex-col md:flex-row items-center gap-8 mb-16">
         <div className="flex-1">
-          <h1 className="text-8xl font-bold mb-2">Hi, I'm <span className="text-cyan-600">Shelby</span></h1>
+          <h1 className="text-8xl font-bold mb-2">Hi, I&apos;m <span className="text-cyan-600">Shelby</span></h1>
           <p className="text-3xl text-gray-700 mb-4 dark:text-white">
             Developer, Adventurer and Lifelong Learner
           </p>
