@@ -2,34 +2,50 @@ import Image from "next/image";
 
 export default function Home() {
   return (
-    <div className="font-sans grid grid-rows-[min-content_1fr_min-content] place-items-start justify-items-center p-6 pb-10 gap-4 sm:p-10">
-      <main className="flex flex-col gap-4 row-start-2 items-center sm:items-start">
-        <div className="p-6 w-lg-[60%] mx-auto">
-          <div className="flex flex-col md:flex-row gap-4">
-            <div className="flex justify-center md:w-1/2">
-              <Image
-                src="/profilePic.jpg"
-                alt="Shelby Profile"
-                width={400}
-                height={400}
-                priority
-                className="object-cover rounded-3xl p-1 overflow-hidden border-10 border-teal-700 shadow-lg"
-              />
-            </div>
-            <div className="p-2 md:w-1/2">
-              <h2 className="text-3xl font-bold mb-4 text-center md:text-left">Shelby Wilson</h2>
-              <ul className="list-none md:list-disc text-xl text-center md:text-left">
-                <li className="p-2">My outie finds solace beneath open skies, where the wild whispers and the horizon stretches endlessly.</li>
-                <li className="p-2">Certified to plunge into the silent depths, my outie navigates worlds beneath the waves with calm precision.</li>
-                <li className="p-2">Lost in dystopian worlds penned in ink, my outie unravels fractured realities and imagined futures.</li>
-                <li className="p-2">A connoisseur of flavors, my outie savors each bite like a carefully coded memory, delighting in the ritual of taste.</li>
-                <li className="p-2">Cherishing the fleeting moments with nieces and nephew, my outie weaves bonds of warmth and wonder beyond the clock’s divide.</li>
-              </ul>
-              <span><i>*In the Apple series Severance, a person’s life is split into two completely separate identities: the Innie, who exists only at work, and the Outie, who exists only outside of it. The two are severed — neither remembers the other’s life.</i></span>
-            </div>
+    <main className="max-w-6xl mx-auto px-4 py-12">
+      {/* Hero Section */}
+      <section className="flex flex-col md:flex-row items-center gap-8 mb-16">
+        <div className="flex-1">
+          <h1 className="text-8xl font-bold mb-2">Hi, I'm <span className="text-cyan-600">Shelby</span></h1>
+          <p className="text-3xl text-gray-700 mb-4 dark:text-white">
+            Developer, Adventurer and Lifelong Learner
+          </p>
+          <ul className="text-xl text-cyan-500 italic space-y-1">
+            <li>Full Stack Developer</li>
+            <li>Creative Coder</li>
+            <li>Quest Explorer</li>
+          </ul>
+        </div>
+        <div className="flex-shrink-0">
+          <div className="rounded-full overflow-hidden border-5 border-black-400 shadow-lg">
+            <Image
+              src="/scubaHang.gif"
+              alt="Shelby scuba diving"
+              width={400}
+              height={400}
+              className="object-cover"
+            />
           </div>
         </div>
-      </main>
-    </div>
+      </section>
+      <hr className="text-gray border-1 mb-2" />
+      {/* Fun Facts */}
+      <section className="mb-16">
+        <h2 className="text-2xl font-bold mb-6">Fun Facts</h2>
+        <div className="grid grid-cols-2 md:grid-cols-4 gap-6">
+          {[
+            { icon: "🚀", text: "Astronomy enthusiast" },
+            { icon: "📚", text: "Avid reader" },
+            { icon: "🗺️", text: "Struck by wanderlust" },
+            { icon: "🤿", text: "Certified scuba diver" },
+          ].map((fact, idx) => (
+            <div key={idx} className="bg-white shadow rounded-lg p-4 flex flex-col items-center text-center hover:shadow-md transition">
+              <div className="text-4xl mb-2">{fact.icon}</div>
+              <p className="text-gray-700 font-semibold">{fact.text}</p>
+            </div>
+          ))}
+        </div>
+      </section>
+    </main>
   );
 }

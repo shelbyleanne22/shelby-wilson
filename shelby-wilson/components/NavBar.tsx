@@ -25,7 +25,7 @@ export default function NavBar() {
   const [openDropdown, setOpenDropdown] = useState<string | null>(null);
 
   return (
-    <nav className="sticky top-0 z-50 bg-teal-500 text-white shadow-md">
+    <nav className="sticky top-0 z-50 bg-white text-cyan-600 shadow-md">
       <div className="max-w-6xl mx-auto px-1 py-1 flex justify-between items-center">
         <div className="flex items-center gap-2">
           <div className="w-8 h-8 rounded-full overflow-hidden border-1 border-white-10 shadow-lg">
@@ -58,8 +58,8 @@ export default function NavBar() {
                           setOpenDropdown((prev) => (prev === label ? null : label))
                         }
                         className={clsx(
-                          'hover:text-teal-700 transition-colors',
-                          pathname === href && 'font-semibold text-teal-700'
+                          'hover:text-cyan-700 transition-colors',
+                          pathname === href && 'font-semibold text-cyan-700'
                         )}
                       >
                         <strong>{label}</strong>
@@ -72,8 +72,8 @@ export default function NavBar() {
                               <Link
                                 href={child.href}
                                 className={clsx(
-                                  'block px-4 py-2 hover:bg-teal-100',
-                                  pathname === child.href && 'font-semibold bg-teal-100'
+                                  'block px-4 py-2 hover:bg-cyan-100',
+                                  pathname === child.href && 'font-semibold bg-cyan-100'
                                 )}
                               >
                                 {child.label}
@@ -87,8 +87,8 @@ export default function NavBar() {
                     <Link
                       href={href}
                       className={clsx(
-                        'hover:text-teal-700 transition-colors',
-                        pathname === href && 'font-semibold text-teal-700'
+                        'hover:text-cyan-700 transition-colors',
+                        pathname === href && 'font-semibold text-cyan-700'
                       )}
                     >
                       <strong>{label}</strong>
@@ -112,14 +112,14 @@ export default function NavBar() {
 
       {/* Mobile dropdown menu */}
       {menuOpen && (
-        <ul className="md:hidden flex flex-col items-center bg-teal-800 border-t border-teal-700">
+        <ul className="md:hidden flex flex-col items-center bg-teal-800 border-t border-cyan-700">
           {navItems.map(({ label, href, children }) => (
-            <li key={href} className="w-full text-center py-3 border-b border-teal-700">
+            <li key={href} className="w-full text-center py-3 border-b border-cyan-700">
               <Link
                 href={href}
                 className={clsx(
-                  'block w-full hover:text-teal-400 transition-colors',
-                  pathname === href && 'font-semibold text-teal-400'
+                  'block w-full hover:text-cyan-400 transition-colors',
+                  pathname === href && 'font-semibold text-cyan-400'
                 )}
                 onClick={() => setMenuOpen(false)}
               >
@@ -127,14 +127,14 @@ export default function NavBar() {
               </Link>
 
               {children && (
-                <ul className='bg-teal-900 text-sm'>
+                <ul className='bg-cyan-900 text-sm'>
                   {children.map((child) => (
-                    <li key={child.href} className="border-t border-teal-700">
+                    <li key={child.href} className="border-t border-cyan-700">
                       <Link
                         href={child.href}
                         className={clsx(
-                          'block py-2 pl-6 w-full text-left hover:text-teal-300',
-                          pathname === child.href && 'font-semibold text-teal-300'
+                          'block py-2 pl-6 w-full text-left hover:text-cyan-300',
+                          pathname === child.href && 'font-semibold text-cyan-300'
                         )}
                         onClick={() => setMenuOpen(false)}
                       >
