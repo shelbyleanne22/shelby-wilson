@@ -8,7 +8,7 @@ export default function useRefDemo() {
         <div>
             <input
                 ref={inputRef}
-                className="border px-4 py-2 rounded mr-4 mb-2 w-full dark:text-white"
+                className="border px-4 py-2 rounded mr-4 mb-2 w-full"
                 placeholder="Focus me"
                 type="text"
             />

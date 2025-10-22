@@ -2,12 +2,12 @@ import Image from "next/image";
 
 export default function Home() {
   return (
-    <main className="max-w-6xl mx-auto px-4 py-12">
+    <main className="max-w-6xl mx-auto px-4 py-12 bg-blue">
       {/* Hero Section */}
       <section className="flex flex-col md:flex-row items-center gap-8 mb-16">
         <div className="flex-1">
           <h1 className="text-8xl font-bold mb-2">Hi, I&apos;m <span className="text-cyan-600">Shelby</span></h1>
-          <p className="text-3xl text-gray-700 mb-4 dark:text-white">
+          <p className="text-3xl text-gray-700 mb-4">
             Developer, Adventurer and Lifelong Learner
           </p>
           <ul className="text-xl text-cyan-500 italic space-y-1">
@@ -24,6 +24,7 @@ export default function Home() {
               width={400}
               height={400}
               className="object-cover"
+              unoptimized
             />
           </div>
         </div>

@@ -21,7 +21,7 @@ export default function HookMeUpVisualizer() {
   return (
     <div>
       <HookSelector selected={selectedHook} onSelect={setSelectedHook} />
-      <div className="mt-6 p-4 rounded border border-gray-300 bg-white shadow dark:border-slate-100 dark:bg-teal-950">
+      <div className="mt-6 p-4 rounded border border-gray-300 bg-white shadow">
         {demoMap[selectedHook]}
       </div>
     </div>
