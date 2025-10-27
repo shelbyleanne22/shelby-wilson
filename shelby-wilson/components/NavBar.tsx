@@ -10,13 +10,9 @@ import clsx from 'clsx';
 const navItems = [
   { label: 'About Me', href: '/' },
   { label: 'Resume', href: '/resume' },
-  {
-    label: 'React Fun', href: '#', children: [
-      { label: 'Ad-Lib Fun', href: '/reactFun/adlib' },
-      { label: 'Mood Tracker', href: '/reactFun/moodTracker' },
-      { label: 'Hook Visualizer', href: '/reactFun/hookVisualizer' }
-    ]
-  }
+  { label: 'Ad-Lib Generator', href: '/reactFun/adlib' },
+  { label: 'Mood Tracker', href: '/reactFun/moodTracker' },
+  { label: 'Hook Visualizer', href: '/reactFun/hookVisualizer' }
 ];
 
 export default function NavBar() {
@@ -44,46 +40,11 @@ export default function NavBar() {
         {/* Desktop nav */}
         <ul className="hidden md:flex space-x-6">
           <ul className="hidden md:flex space-x-6 relative">
-            {navItems.map(({ label, href, children }) => {
-              const hasChildren = !!children;
+            {navItems.map(({ label, href }) => {
               const isOpen = openDropdown === label;
 
               return (
                 <li key={href} className="relative">
-                  {hasChildren ? (
-                    <>
-                      <button
-                        type="button"
-                        onClick={() =>
-                          setOpenDropdown((prev) => (prev === label ? null : label))
-                        }
-                        className={clsx(
-                          'hover:text-cyan-700 transition-colors',
-                          pathname === href && 'font-semibold text-cyan-700'
-                        )}
-                      >
-                        <strong>{label}</strong>
-                      </button>
-
-                      {isOpen && (
-                        <ul className="absolute mt-1 bg-white text-black shadow-lg rounded min-w-max z-50">
-                          {children.map((child) => (
-                            <li key={child.href} className="relative">
-                              <Link
-                                href={child.href}
-                                className={clsx(
-                                  'block px-4 py-2 hover:bg-cyan-100',
-                                  pathname === child.href && 'font-semibold bg-cyan-100'
-                                )}
-                              >
-                                {child.label}
-                              </Link>
-                            </li>
-                          ))}
-                        </ul>
-                      )}
-                    </>
-                  ) : (
                     <Link
                       href={href}
                       className={clsx(
@@ -93,7 +54,6 @@ export default function NavBar() {
                     >
                       <strong>{label}</strong>
                     </Link>
-                  )}
                 </li>
               );
             })}
@@ -113,7 +73,7 @@ export default function NavBar() {
       {/* Mobile dropdown menu */}
       {menuOpen && (
         <ul className="md:hidden flex flex-col items-center bg-cyan-800 border-t border-cyan-700">
-          {navItems.map(({ label, href, children }) => (
+          {navItems.map(({ label, href }) => (
             <li key={href} className="w-full text-center py-3 border-b border-cyan-700">
               <Link
                 href={href}
@@ -125,25 +85,6 @@ export default function NavBar() {
               >
                 {label}
               </Link>
-
-              {children && (
-                <ul className='bg-cyan-900 text-sm'>
-                  {children.map((child) => (
-                    <li key={child.href} className="border-t border-cyan-700">
-                      <Link
-                        href={child.href}
-                        className={clsx(
-                          'block py-2 pl-6 w-full text-left hover:text-cyan-300',
-                          pathname === child.href && 'font-semibold text-cyan-300'
-                        )}
-                        onClick={() => setMenuOpen(false)}
-                      >
-                        {child.label}
-                      </Link>
-                    </li>
-                  ))}
-                </ul>
-              )}
             </li>
           ))}
         </ul>

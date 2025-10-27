@@ -10,7 +10,7 @@ export default function Home() {
           <p className="text-3xl text-gray-700 mb-4">
             Developer, Adventurer and Lifelong Learner
           </p>
-          <ul className="text-xl text-cyan-500 italic space-y-1">
+          <ul className="text-xl italic space-y-1 cute-text">
             <li>Full Stack Developer</li>            
             <li>Problem Solver</li>
             <li>Creative Coder</li>
