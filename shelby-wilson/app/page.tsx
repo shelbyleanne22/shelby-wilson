@@ -7,14 +7,18 @@ export default function Home() {
       <section className="flex flex-col md:flex-row items-center gap-8 mb-16">
         <div className="flex-1">
           <h1 className="text-8xl font-bold mb-2">Hi, I&apos;m <span className="text-cyan-600">Shelby</span></h1>
-          <p className="text-3xl text-gray-700 mb-4">
+          <p className="text-3xl text-gray-700 mb-4 cute-text">
             Developer, Adventurer and Lifelong Learner
           </p>
-          <ul className="text-xl italic space-y-1 cute-text">
-            <li>Full Stack Developer</li>            
-            <li>Problem Solver</li>
-            <li>Creative Coder</li>
-          </ul>
+          <p className="text-xl italic space-y-1">
+            I’m a full-stack developer based in Tampa, Florida,
+            originally from Augusta, Georgia. I earned my Bachelor’s
+            degree in Computer Science and an Advanced Cyber Defender
+            Certification from Augusta University in 2019. I’m passionate
+            about problem-solving, and when I’m not coding, you’ll find
+            me enjoying the outdoors or playing sports. I’m always striving
+            to learn new technologies and improve my skills every day.
+          </p>
         </div>
         <div className="flex-shrink-0">
           <div className="rounded-full overflow-hidden border-5 border-black-400 shadow-lg">
