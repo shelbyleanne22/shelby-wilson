@@ -11,7 +11,7 @@ export default function Home() {
             Developer, Adventurer and Lifelong Learner
           </p>
           <p className="text-xl italic space-y-1">
-            I’m a full-stack developer based in Tampa, Florida,
+            I’m a full-stack developer based in Tampa, Florida. I am 
             originally from Augusta, Georgia. I earned my Bachelor’s
             degree in Computer Science and an Advanced Cyber Defender
             Certification from Augusta University in 2019. I’m passionate
