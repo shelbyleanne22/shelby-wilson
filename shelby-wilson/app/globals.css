@@ -1,4 +1,5 @@
 @import "tailwindcss";
+@import url('https://fonts.googleapis.com/css2?family=Dancing+Script&display=swap');
 
 :root {
   --background: #FAF9F6;
@@ -21,4 +22,5 @@ body {
 .cute-text {
   @apply text-cyan-700 text-2xl;
   font-family: 'Dancing Script', cursive;
+  -webkit-font-smoothing: antialiased; /* helps Safari render more cleanly */
 }
