@@ -15,13 +15,14 @@ export default function Sidebar() {
             <p className="text-center text-sm text-gray-600">
                 {resumeData.title}
             </p>
-            <div className="mt-6 space-y-1 text-sm text-gray-700">
+            <div className="m-6 space-y-1 text-sm text-gray-700">
                 <p>📨 {resumeData.email}</p>
                 <p>📍 {resumeData.location}</p>
             </div>
 
             <h2 className="text-2xl italic">Skills</h2>
-            <hr className="border-white"/>
+            <hr />
+            <hr className="border-white" />
             <div className="flex flex-wrap gap-2 mt-2">
                 {resumeData.skills.map((skill, idx) => (
                     <span key={idx} className="bg-blue-100 px-3 py-1 rounded-full text-sm">

@@ -15,7 +15,7 @@ export default function Experience() {
                         {job.position}
                     </p>
                     <div className="flex flex-wrap gap-2 mt-2">
-                        <ul className="list-none pl-4 mt-2 space-y-1">
+                        <ul className="list-disc pl-4 mt-2 space-y-1">
                             {job.responsibilities.map((responsibility, idx) => (
                                 <li key={idx}>{responsibility}</li>
                             ))}

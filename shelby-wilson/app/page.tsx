@@ -2,7 +2,7 @@ import Image from "next/image";
 
 export default function Home() {
   return (
-    <main className="max-w-6xl mx-auto px-4 py-12 bg-blue">
+    <div className="max-w-6xl mx-auto px-4 py-12 bg-blue">
       {/* Hero Section */}
       <section className="flex flex-col md:flex-row items-center gap-8 mb-16">
         <div className="flex-1">
@@ -11,13 +11,12 @@ export default function Home() {
             Developer, Adventurer and Lifelong Learner
           </p>
           <p className="text-xl italic space-y-1">
-            I’m a full-stack developer based in Tampa, Florida. I am 
-            originally from Augusta, Georgia. I earned my Bachelor’s
-            degree in Computer Science and an Advanced Cyber Defender
-            Certification from Augusta University in 2019. I’m passionate
-            about problem-solving, and when I’m not coding, you’ll find
-            me enjoying the outdoors or playing sports. I’m always striving
-            to learn new technologies and improve my skills every day.
+            I’m a passionate full-stack developer based in sunny Tampa, Florida
+            (originally from Augusta, Georgia). I graduated from
+            Augusta University in 2019 with a degree in Computer
+            Science and an Advanced Cyber Defender Certification.
+            I love tackling tricky problems, learning new tech,
+            and spending my downtime outdoors or playing sports.
           </p>
         </div>
         <div className="flex-shrink-0">
@@ -51,6 +50,6 @@ export default function Home() {
           ))}
         </div>
       </section>
-    </main>
+    </div>
   );
 }

@@ -7,14 +7,14 @@ export default function ResumePage() {
     <div className="max-w-6xl mx-auto px-4 py-12">
       <div className="min-h-screen bg-white flex flex-col md:flex-row">
         <Sidebar />
-        <main className="flex-2 p-6">
+        <div className="flex-2 p-6">
           <h2 className="text-2xl italic">Experience</h2>
           <hr/>
           <Experience />
           <h2 className="text-2xl italic">Education</h2>
           <hr/>
           <Education />
-        </main>
+        </div>
       </div>
     </div>
   );
